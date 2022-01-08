@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+#define MAX 9
+
+int N, M;
+vector<int> input;
+int arr[MAX];
+bool visited[MAX];
+
+void fn(int num, int cnt)
+{
+    if(cnt == M)
+    {
+        for(int i = 0; i < M; i++)
+            cout << arr[i] << " ";
+        cout << "\n";
+        return;
+    }
+
+    for(int i = num; i < input.size(); i++)
+    {
+        if(!visited[i])
+        {
+            visited[i] = true;
+            arr[cnt] = input[i];
+            fn(i+1, cnt+1);
+            visited[i] = false;
+        }
+    }
+}
+
+int main() {
+    cin >> N >> M;  
+
+    int temp;
+    for(int i=0; i<N; i++){
+        cin >> temp;
+        input.push_back(temp);
+    }
+
+    sort(input.begin(), input.end());
+    
+    fn(0, 0);
+}
