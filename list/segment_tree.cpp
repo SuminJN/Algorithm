@@ -2,18 +2,16 @@
 #include <cmath>
 
 using namespace std;
-#define MAX 1000001
 
-int N, M, K, a, b;
-long long c;
-long long arr[MAX];
+int N;
 long long *tree;
+long long arr[12] = {5, 8, 7, 3, 2, 5, 1, 8, 9, 8, 7, 3};
 
 long long init(int start, int end, int node)
 {
-	if(start == end) 
+	if(start == end)
 		return tree[node] = arr[start];
-	
+
 	int mid = (start + end) / 2;
 
 	return tree[node] = init(start, mid, 2*node) + init(mid+1, end, 2*node + 1);
@@ -46,32 +44,27 @@ void update(int start, int end, int index, long long diff, int node)
 int main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-
-	cin >> N >> M >> K;
-
-	for(int i = 0; i < N; i++){
-		cin >> arr[i];
-	}
-
+    
+    //배열의 크기
+    N = 12;
+    
+    //트리의 크기 정하기
 	int height = ceil(log2(N));
     tree = new long long[1 << (height+1)];
 
+
+    //세그먼트 트리 만들기
 	init(0, N-1, 1);
 
-	for(int i = 0; i < M+K; i++){
-		cin >> a >> b >> c;
+    //3번째 수를 7로 Update
+    int a = 3, b = 7;
+    long long diff = b - arr[a-1];
+    arr[a-1] = b;
+    update(0, N-1, a, b, 1);
 
-		if(a == 1)
-		{
-			long long diff = c - arr[b-1];
-			arr[b-1] = c;
-			update(0, N-1, b-1, diff, 1);
-		}
-		else if(a == 2)
-		{
-			cout << sum(0, N-1, b-1, c-1, 1) << "\n";
-		}
-	}
+    //2번째 수부터 8번째 수까지의 합 구하기
+    a = 2, b = 8;
+    cout << sum(0, N-1, a-1, b-1, 1) << "\n";
 
     return 0;
 }
