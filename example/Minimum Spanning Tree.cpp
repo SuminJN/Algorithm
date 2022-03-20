@@ -29,8 +29,6 @@ void Union(int x, int y)
 
 int main()
 {
-    ios_base :: sync_with_stdio(false); cin.tie(0); cout.tie(0);
-
     cin >> vertex >> edge;
 
     for(int i = 0; i < edge; i++){
