@@ -1,22 +1,22 @@
 #include <iostream>
-#include <algorithm>
 
 using namespace std;
+#define MAX 101
 
-int N, K;
-int weight[101], value[101];
-int DP[101][100001];
+int N, M;
+int weight[MAX], value[MAX];
+int DP[MAX][10001];
 
 int main() 
 {
-    cin >> N >> K;
+    cin >> N >> M;
 
     for(int i = 1; i <= N; i++){
         cin >> weight[i] >> value[i];
     }
 
     for(int i = 1; i <= N; i++){
-        for(int j = 1; j <= K; j++){
+        for(int j = 1; j <= M; j++){
             if(j - weight[i] >= 0){
                 DP[i][j] = max(DP[i-1][j], DP[i-1][j-weight[i]] + value[i]);
             } else {
@@ -25,7 +25,7 @@ int main()
         }
     }
 
-    cout << DP[N][K];
+    cout << DP[N][M];
 
     return 0;
 }
