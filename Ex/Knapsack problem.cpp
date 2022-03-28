@@ -4,7 +4,7 @@ using namespace std;
 
 int N, M;
 int weight[101], value[101];
-int DP[101][100001];
+int dp[101][100001];
 
 int main() 
 {
@@ -17,14 +17,14 @@ int main()
     for(int i = 1; i <= N; i++){
         for(int j = 1; j <= M; j++){
             if(j - weight[i] >= 0){
-                DP[i][j] = max(DP[i-1][j], DP[i-1][j-weight[i]] + value[i]);
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight[i]] + value[i]);
             } else {
-                DP[i][j] = DP[i-1][j];
+                dp[i][j] = dp[i-1][j];
             }
         }
     }
 
-    cout << DP[N][M];
+    cout << dp[N][M];
 
     return 0;
 }
