@@ -20,7 +20,7 @@ class Solution {
             graph[v1][v2] = 0;
             graph[v2][v1] = 0;
             
-            answer = Math.min(answer, BFS(n));
+            answer = Math.min(answer, BFS(n, v1));
             
             graph[v1][v2] = 1;
             graph[v2][v1] = 1;
@@ -29,12 +29,12 @@ class Solution {
         return answer;
     }
     
-    private int BFS(int n) {
+    private int BFS(int n, int start) {
         boolean[] visited = new boolean[n+1];
         int count = 1;
         
         Queue<Integer> q = new LinkedList<>();
-        q.add(1);
+        q.add(start);
         
         while(!q.isEmpty()) {
             int now = q.remove();
