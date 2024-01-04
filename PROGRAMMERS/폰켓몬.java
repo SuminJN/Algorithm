@@ -3,14 +3,15 @@ import java.util.*;
 class Solution {
     public int solution(int[] nums) {
         int answer = 0;
+        int pickSize = nums.length / 2;
         
-        HashMap<Integer, Integer> map = new HashMap<>();
+        HashSet<Integer> set = new HashSet<>();
         
-        for(Integer num : nums) {
-            map.put(num, 1);
+        for(Integer n : nums) {
+            set.add(n);
         }
         
-        answer = (map.size() >= nums.length/2) ? nums.length/2 : map.size();
+        answer = (set.size() >= pickSize) ? pickSize : set.size();
         
         return answer;
     }
