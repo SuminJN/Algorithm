@@ -36,4 +36,34 @@ class Solution {
                 }
             }
         }
+    }
+    
+    private void bfs(int characterX, int characterY, int itemX, int itemY) {
+        
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{characterX, characterY});
+        
+        while(!q.isEmpty()) {
+            int[] curr = q.remove();
+            int currX = curr[0];
+            int currY = curr[1];
+            
+            if(currX == itemX && currY == itemY) {
+                answer = visited[currX][currY] / 2;
+                return;
+            }
+            
+            for(int i = 0; i < 4; i++) {
+                int nx = currX + dx[i];
+                int ny = currY + dy[i];
+                
+                if(nx < 1 || nx > 100 || ny < 1 || ny > 100) continue;
+                
                 if(map[nx][ny] == 1 && visited[nx][ny] == 0) {
+                    visited[nx][ny] = visited[currX][currY] + 1;
+                    q.add(new int[]{nx, ny});
+                }
+            }
+        }
+    }
+}
