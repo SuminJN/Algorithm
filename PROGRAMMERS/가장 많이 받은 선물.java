@@ -1,15 +1,13 @@
 import java.util.*;
 ​
 class Solution {
-    
     public int solution(String[] friends, String[] gifts) {
         
-        int answer = 0;
-        int size = friends.length;
-        int[] result = new int[size];
-        int[] point = new int[size];
         List<String> friendList = Arrays.asList(friends);
+        int size = friends.length;
+        int[] point = new int[size];
         int[][] matrix = new int[size][size];
+        int[] result = new int[size];
         
         for(String gift : gifts) {
             String to = gift.split(" ")[0];
@@ -33,7 +31,6 @@ class Solution {
                 }
             }
         }
-            System.out.print(result[i]);
         
         return Arrays.stream(result).max().getAsInt();
     }
