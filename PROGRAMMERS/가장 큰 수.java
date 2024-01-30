@@ -22,4 +22,3 @@ class Solution {
         return answer;
     }
 }
-                return (n2 + n1).compareTo(n1 + n2);
