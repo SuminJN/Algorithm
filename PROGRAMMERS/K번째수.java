@@ -13,8 +13,6 @@ class Solution {
             answer.add(arr[commands[i][2]-1]);
         }
         
-        System.out.println(answer);
-        
         return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
