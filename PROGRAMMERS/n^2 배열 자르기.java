@@ -15,4 +15,3 @@ class Solution {
         return answer;
     }
 }
-        // ArrayList<Integer> list = new ArrayList<>();
