@@ -15,12 +15,10 @@ public class Main {
 ​
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
 ​
         int V = Integer.parseInt(br.readLine());
         int E = Integer.parseInt(br.readLine());
 ​
-        boolean[] visited = new boolean[V+1];
         int[] result = new int[V+1];
         List<List<Node>> graph = new ArrayList<>();
 ​
@@ -53,16 +51,14 @@ public class Main {
             Node currNode = pq.remove();
             int curr = currNode.dest;
 ​
-            if(!visited[curr]) {
-                visited[curr] = true;
+            if(currNode.weight > result[curr]) continue;
 ​
-                for(Node node : graph.get(curr)) {
-                    int next = node.dest;
+            for(Node node : graph.get(curr)) {
+                int next = node.dest;
 ​
-                    if(!visited[next] && result[next] > result[curr] + node.weight) {
-                        result[next] = result[curr] + node.weight;
-                        pq.add(new Node(next, result[next]));
-                    }
+                if(result[next] > result[curr] + node.weight) {
+                    result[next] = result[curr] + node.weight;
+                    pq.add(new Node(next, result[next]));
                 }
             }
         }
