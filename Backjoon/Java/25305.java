@@ -20,6 +20,6 @@ public class Main {
 
         Arrays.sort(arr, 1, N + 1);
 
-        System.out.println(arr[N - M]);
+        System.out.println(arr[N - M + 1]);
     }
 }
